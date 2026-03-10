@@ -291,9 +291,12 @@ footer strong{color:#fff;}
 
 /* ─── RESPONSIVE ─── */
 @media(max-width:900px){
-  .hero-grid,.g-grid,.sv-grid,.rd-grid{grid-template-columns:1fr;}
-  .dep-grid-prev{grid-template-columns:1fr;}
-  .av-grid{grid-template-columns:1fr;}
+  .nav-in{height: 80px; padding: 0 15px;}
+  .logo-img{height: 100px; margin: -10px 0;}
+  .mob{top: 80px;}
+  .hero{padding-top: 100px; min-height: auto;}
+  .hero-grid,.g-grid,.sv-grid,.rd-grid{grid-template-columns:1fr; gap: 40px;}
+  .dep-grid-prev,.av-grid{grid-template-columns:1fr;}
   .how-grid{grid-template-columns:repeat(2,1fr);}
   .nav-links{display:none;}
   .burger{display:flex;}
@@ -302,14 +305,21 @@ footer strong{color:#fff;}
   .pb{padding:40px 28px;}
   .af-cta{padding:36px 24px;}
   .av-fields{grid-template-columns:1fr;}
-  .av-form-box{padding:28px 20px;}
+  .av-form-box{padding:24px 16px;}
   .av-rating-big{flex-direction:column;gap:10px;}
 }
-@media(max-width:580px){
+@media(max-width:480px){
+  .logo-img{height: 85px;}
+  .nav-in{height: 70px;}
+  .mob{top: 70px;}
+  .hero{padding-top: 90px;}
+  .h1{font-size: 30px; line-height: 1.1;}
+  .lead{font-size: 16px;}
+  .btn-lg{width: 100%; justify-content: center; padding: 16px 20px;}
   .how-grid{grid-template-columns:1fr;}
-  .hero{padding:96px 20px 60px;}
-  .cta-diag{margin:40px 20px 60px;}
-  .stats-g{grid-template-columns:repeat(3,1fr);}
+  .pb-h{font-size: 26px;}
+  .pb-stats > div{width: 100%; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 15px;}
+  .stats-g{grid-template-columns: 1fr; gap: 10px;}
 }
 </style>
 </head>
@@ -799,13 +809,13 @@ calcSim();
 
 // ─── AVALIAÇÕES ───
 var avData = [
-  {nome:'Roberto Alves',cidade:'São Paulo, SP',servico:'Limpa Nome',nota:5,texto:'"Cara, incrível! tava com o nome sujo a quase 5 anos e ja tinha perdido a esperanca. O Clube limpo meu nome muito rápido mesmo, em menos de 2 meses ja tava tudo certo. hj ja tenho cartao e ate financiamento de moto liberado!!"',resultado:'Nome limpo em 45 dias',data:'Fevereiro 2025'},
-  {nome:'Ana Paula Marcondes',cidade:'Rio de Janeiro, RJ',servico:'Score',nota:5,texto:'"meu score nao passava de 280 por nada, tentei de tudo. o pessoal do clube foi nota 10, me explicaram tudo e o resultado veio. agora to com 720 e consegui o financiamento da minha casa tao sonhado"',resultado:'Score 280 → 720',data:'Janeiro 2025'},
-  {nome:'Carlos Ed.',cidade:'Belo Horizonte, MG',servico:'Bacen',nota:4,texto:'"Tinha umas restrição la no banco central q travava tudo minha vida nos bancos. demorou um pouquinho mais q o esperado mas resolveu tudo. Equipe muito profisional, valeu a pena"',resultado:'Restrição Bacen removida',data:'Março 2025'},
-  {nome:'Fernanda Gomes',cidade:'Recife, PE',servico:'Limpa Nome',nota:5,texto:'"Atendimento muito bom, eles tiram todas as duvidas da gente. me ajudaram demais a limpa meu nome que tava uma bagunça faz tempo. nota mil pra vcs!!"',resultado:'Nome limpo em 3 meses',data:'Fevereiro 2025'},
-  {nome:'Marcos Vinicios',cidade:'Fortaleza, CE',servico:'Diagnóstico',nota:5,texto:'"eu achava q sabia oq precisava mas o diagnostico mostrou q era otra coisa. equipe bem honesta nao tentam veder oq vc nao precisa. recomendo dmais"',resultado:'Diagnóstico Completo',data:'Janeiro 2025'},
-  {nome:'Juliana R.',cidade:'Salvador, BA',servico:'Rating',nota:4,texto:'"Muito bom os serviço deles. Consegui melhora meu rating no banco e finalmente o limite do meu cartao subiu. so nao dou 5 estrelas pq o zap as vezes demora pra respoder mas o servico e garantido"',resultado:'Melhora no Rating Bancário',data:'Março 2025'},
-  {nome:'Andre Santos',cidade:'Curitiba, PR',servico:'Limpa Nome',nota:5,texto:'"sensacional! resolvido meu problema de anos. confie q o trabalho e serio"',resultado:'Regularização Total',data:'Fevereiro 2025'},
+  {nome:'Roberto Alves',cidade:'São Paulo, SP',servico:'Limpa Nome',nota:5,texto:'Cara, incrível! tava com o nome sujo a quase 5 anos e ja tinha perdido a esperanca. O Clube limpo meu nome muito rápido mesmo, em menos de 2 meses ja tava tudo certo. hj ja tenho cartao e ate financiamento de moto liberado!!',resultado:'Nome limpo em 45 dias',data:'Fevereiro 2025'},
+  {nome:'Ana Paula Marcondes',cidade:'Rio de Janeiro, RJ',servico:'Score',nota:5,texto:'meu score nao passava de 280 por nada, tentei de tudo. o pessoal do clube foi nota 10, me explicaram tudo e o resultado veio. agora to com 720 e consegui o financiamento da minha casa tao sonhado',resultado:'Score 280 → 720',data:'Janeiro 2025'},
+  {nome:'Carlos Ed.',cidade:'Belo Horizonte, MG',servico:'Bacen',nota:4,texto:'Tinha umas restrição la no banco central q travava tudo minha vida nos bancos. demorou um pouquinho mais q o esperado mas resolveu tudo. Equipe muito profisional, valeu a pena',resultado:'Restrição Bacen removida',data:'Março 2025'},
+  {nome:'Fernanda Gomes',cidade:'Recife, PE',servico:'Limpa Nome',nota:5,texto:'Atendimento muito bom, eles tiram todas as duvidas da gente. me ajudaram demais a limpa meu nome que tava uma bagunça faz tempo. nota mil pra vcs!!',resultado:'Nome limpo em 3 meses',data:'Fevereiro 2025'},
+  {nome:'Marcos Vinicios',cidade:'Fortaleza, CE',servico:'Diagnóstico',nota:5,texto:'eu achava q sabia oq precisava mas o diagnostico mostrou q era otra coisa. equipe bem honesta nao tentam veder oq vc nao precisa. recomendo dmais',resultado:'Diagnóstico Completo',data:'Janeiro 2025'},
+  {nome:'Juliana R.',cidade:'Salvador, BA',servico:'Rating',nota:4,texto:'Muito bom os serviço deles. Consegui melhora meu rating no banco e finalmente o limite do meu cartao subiu. so nao dou 5 estrelas pq o zap as vezes demora pra respoder mas o servico e garantido',resultado:'Melhora no Rating Bancário',data:'Março 2025'},
+  {nome:'Andre Santos',cidade:'Curitiba, PR',servico:'Limpa Nome',nota:5,texto:'sensacional! resolvido meu problema de anos. confie q o trabalho e serio',resultado:'Regularização Total',data:'Fevereiro 2025'},
 ];
 var filtroAtivo = 'todos';
 
@@ -880,7 +890,7 @@ function enviarAv() {
     cidade: cidade || 'Brasil',
     servico: servico,
     nota: notaSel,
-    texto: '"' + texto + '"',
+    texto: texto,
     resultado: resultado || '',
     data: data
   });
