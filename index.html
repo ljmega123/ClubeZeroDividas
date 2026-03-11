@@ -391,8 +391,8 @@
       font-size: clamp(34px, 5vw, 58px);
       font-weight: 800;
       color: var(--tx);
-      line-height: 1.06;
-      letter-spacing: -1.5px;
+      line-height: 1.1;
+      letter-spacing: -1px;
       margin-bottom: 20px;
     }
 
@@ -400,8 +400,8 @@
       font-size: clamp(25px, 3.5vw, 40px);
       font-weight: 800;
       color: var(--tx);
-      line-height: 1.15;
-      letter-spacing: -.8px;
+      line-height: 1.2;
+      letter-spacing: -.5px;
       margin-bottom: 14px;
     }
 
@@ -950,22 +950,40 @@
       }
 
       .mob-nav {
-        display: flex;
+        display: none !important;
       }
 
       .waf-wrap {
-        bottom: 120px;
+        bottom: 30px;
       }
       
       .fr { display: none !important; }
-      .hero-grid { display: block !important; }
+      .hero-grid { display: block !important; padding: 0 20px; }
       .hero-btns { flex-direction: column !important; align-items: center; gap: 15px; }
       .btn-lg { width: 100% !important; justify-content: center; }
-      .h1 { font-size: 28px !important; margin-bottom: 20px; }
-      .lead { margin: 0 auto 30px; }
+      .h1 { 
+        font-size: 32px !important; 
+        line-height: 1.15 !important; 
+        letter-spacing: -0.5px !important; 
+        margin-bottom: 20px !important; 
+      }
+      .h2 { 
+        font-size: 26px !important; 
+        line-height: 1.2 !important; 
+        letter-spacing: -0.3px !important; 
+      }
+      .lead { font-size: 16px !important; margin: 0 auto 30px; line-height: 1.6 !important; }
+      .cta-diag {
+        padding: 40px 24px !important;
+        margin: 40px 15px !important;
+      }
+      .cd-tt { font-size: 24px !important; }
+      .cd-btn { width: 100%; justify-content: center; }
+      
       .f-grid { grid-template-columns: 1fr !important; text-align: center; gap: 30px; }
       .f-col { align-items: center; display: flex; flex-direction: column; }
       .flinks { justify-content: center !important; flex-wrap: wrap; gap: 10px; }
+      .wrap { padding: 0 20px; }
     }
 
     @keyframes wap {
@@ -3475,13 +3493,6 @@
 
 </div>
 
-<div class="mob-nav">
-  <button class="mn-item on" onclick="go('home')"><span>🏠</span><span>Início</span></button>
-  <button class="mn-item" onclick="go('servicos')"><span>🛠️</span><span>Serviços</span></button>
-  <a href="https://wa.me/558391080635?text=Ol%C3%A1%21%20Vim%20pelo%20site%20do%20Clube%20Zero%20D%C3%ADvidas%20e%20quero%20saber%20mais%21%20%F0%9F%92%AA" target="_blank" class="mn-cta"><span>📲</span><span>Limpa Nome</span></a>
-  <button class="mn-item" onclick="go('avaliacoes')"><span>⭐</span><span>Reviews</span></button>
-  <button class="mn-item" onclick="go('redes')"><span>📱</span><span>Redes</span></button>
-</div>
 
 <div class="waf-wrap">
 
