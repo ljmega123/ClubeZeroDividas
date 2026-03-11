@@ -85,7 +85,9 @@
 
     .loader-content {
       text-align: center;
-      width: 300px;
+      width: 100%;
+      max-width: 500px;
+      padding: 20px;
     }
 
     .loader-bar-wrap {
@@ -130,6 +132,16 @@
       right: 0;
       z-index: 10000;
       letter-spacing: 0.5px;
+    }
+
+    @media(max-width: 900px) {
+      .announcement {
+        position: relative;
+        font-size: 12px;
+      }
+      nav {
+        top: 0 !important;
+      }
     }
 
 
@@ -854,6 +866,7 @@
       .hero {
         padding-top: 100px;
         min-height: auto;
+        text-align: center;
       }
 
       .hero-grid,
@@ -917,9 +930,18 @@
       }
 
       .waf-wrap {
-        bottom: 100px;
+        bottom: 120px;
       }
-      /* Lift WA button to not overlap mob-nav */
+      
+      .fr { display: none !important; }
+      .hero-grid { display: block !important; }
+      .hero-btns { flex-direction: column !important; align-items: center; gap: 15px; }
+      .btn-lg { width: 100% !important; justify-content: center; }
+      .h1 { font-size: 28px !important; margin-bottom: 20px; }
+      .lead { margin: 0 auto 30px; }
+      .f-grid { grid-template-columns: 1fr !important; text-align: center; gap: 30px; }
+      .f-col { align-items: center; display: flex; flex-direction: column; }
+      .flinks { justify-content: center !important; flex-wrap: wrap; gap: 10px; }
     }
 
     @keyframes wap {
@@ -2553,8 +2575,8 @@
   </style>
 </head>
 <div id="loader">
-  <div class="loader-content">
-    <img src="logo.png" alt="Logo" style="height:400px; max-width:90vw; margin-bottom:40px; object-fit:contain;">
+  <div class="loader-content" style="display:flex; flex-direction:column; align-items:center; justify-content:center;">
+    <img src="logo.png" alt="Logo" style="height:auto; width:90%; max-width:400px; margin-bottom:40px; display:block; margin: 0 auto;">
     <div class="loader-bar-wrap">
       <div class="loader-bar" id="loader-bar"></div>
     </div>
@@ -2894,44 +2916,27 @@
     <div class="f-grid">
       <div class="f-col">
         <img src="logo.png" alt="Logo" style="height:80px; filter: brightness(0) invert(1); margin-bottom:20px;">
-        <p>Especialistas em recuperação de crédito e saúde financeira. Ajudamos milhares de brasileiros a recuperarem
-          sua liberdade.</p>
+        <p>Especialistas em recuperação de crédito e saúde financeira. Ajudamos milhares de brasileiros a recuperarem sua liberdade.</p>
       </div>
       <div class="f-col">
         <h4>Navegação</h4>
-        <ul class="f-list">
-          <li><button onclick="go('home')">Início</button></li>
-          <li><button onclick="go('servicos')">Serviços</button></li>
-          <li><button onclick="go('afiliado')">Seja Afiliado</button></li>
-          <li><button onclick="go('avaliacoes')">Avaliações</button></li>
-        </ul>
-      </div>
-      <div class="f-col">
-        <h4>Serviços</h4>
-        <ul class="f-list">
-          <li><button onclick="go('servicos')">Limpa Nome</button></li>
-          <li><button onclick="go('servicos')">Aumento de Score</button></li>
-          <li><button onclick="go('servicos')">Limpa Bacen</button></li>
-          <li><button onclick="go('servicos')">Rating Bancário</button></li>
-        </ul>
+        <div class="flinks" style="border:none; padding:0; background:none;">
+          <button class="fl" onclick="go('home')">Início</button>
+          <button class="fl" onclick="go('servicos')">Serviços</button>
+          <button class="fl" onclick="go('afiliado')">Afiliado</button>
+          <button class="fl" onclick="go('avaliacoes')">Avaliações</button>
+        </div>
       </div>
       <div class="f-col">
         <h4>Contato</h4>
         <ul class="f-list">
           <li><a href="https://wa.me/558391080635" target="_blank">📲 (83) 9108-0635</a></li>
           <li><a href="https://www.instagram.com/clube_zero_dividas/" target="_blank">📸 Instagram</a></li>
-          <li><a href="https://www.youtube.com/@Clubezerodividas" target="_blank">▶️ YouTube</a></li>
         </ul>
       </div>
     </div>
     <div class="f-bottom">
-      <div class="trust-seals">
-        <img src="https://img.icons8.com/color/96/ssl.png" alt="SSL">
-        <img src="https://img.icons8.com/color/96/shield.png" alt="Safe">
-        <img src="https://img.icons8.com/color/96/checked--v1.png" alt="LGPD">
-        <img src="https://img.icons8.com/color/96/whatsapp--v1.png" alt="WhatsApp Support">
-      </div>
-      <p>© 2026 <strong>Clube Zero Dívidas</strong> · <em>Todos os direitos reservados.</em></p>
+      <p>© 2026 <strong>Clube Zero Dívidas</strong> · <em>Recupere seu crédito. Recupere sua liberdade.</em></p>
     </div>
   </footer>
 
@@ -3405,18 +3410,19 @@
       </div>
     </div>
   </div>
-  <footer>
+  <footer class="f-main">
     <div class="flinks">
       <button class="fl" onclick="go('home')">Início</button>
       <button class="fl" onclick="go('servicos')">Serviços</button>
       <button class="fl" onclick="go('afiliado')">Afiliado</button>
       <button class="fl" onclick="go('avaliacoes')">Avaliações</button>
       <button class="fl" onclick="go('redes')">Redes Sociais</button>
+      <a class="fl-a" href="https://wa.me/558391080635?text=Ol%C3%A1%21%20Vim%20pelo%20site%20do%20Clube%20Zero%20D%C3%ADvidas%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20%F0%9F%98%8A" target="_blank">WhatsApp</a>
     </div>
     <div style="margin-bottom: 24px; text-align: center;">
       <img src="logo.png" alt="Logo" style="height:90px; filter: brightness(0) invert(1); opacity: 0.85;">
     </div>
-    <p>© 2025 <strong>Clube Zero Dívidas</strong> · <em>Recupere seu crédito. Recupere sua liberdade.</em></p>
+    <p>© 2026 <strong>Clube Zero Dívidas</strong> · <em>Recupere seu crédito. Recupere sua liberdade.</em></p>
   </footer>
 </div>
 
