@@ -183,10 +183,10 @@
     }
 
     .logo-img {
-      height: 150px;
+      height: 200px;
       width: auto;
       display: block;
-      margin: -25px 0;
+      margin: -55px 0;
       transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
@@ -599,7 +599,7 @@
     .cta-in {
       position: relative;
       z-index: 1;
-      max-width: 680px;
+      max-width: 850px;
       margin: 0 auto;
     }
 
@@ -809,51 +809,58 @@
       bottom: 0;
       left: 0;
       right: 0;
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      z-index: 9998;
-      border-top: 1px solid var(--bd);
-      padding: 10px 20px 25px;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
+      z-index: 10000;
+      border-top: 1px solid rgba(226, 232, 240, 0.8);
+      padding: 12px 10px 22px;
       justify-content: space-around;
-      box-shadow: 0 -10px 25px rgba(0, 0, 0, 0.05);
+      box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.08);
+      border-radius: 20px 20px 0 0;
     }
 
     .mn-item {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 4px;
+      gap: 6px;
       background: none;
       border: none;
       color: var(--tx3);
       font-size: 11px;
       font-weight: 700;
       cursor: pointer;
-      transition: all .2s;
+      transition: all .3s cubic-bezier(0.4, 0, 0.2, 1);
+      width: 20%;
+      position: relative;
     }
 
     .mn-item i {
-      font-size: 20px;
+      font-size: 22px;
+      transition: all .3s cubic-bezier(0.4, 0, 0.2, 1);
+      filter: grayscale(1);
+      opacity: 0.6;
     }
 
     .mn-item.on {
       color: var(--az);
     }
 
-    .mn-cta {
-      background: var(--vd-grad);
-      color: #fff;
-      padding: 12px 24px;
-      border-radius: 50px;
-      font-weight: 800;
-      font-size: 14px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      box-shadow: 0 6px 15px rgba(22, 163, 74, 0.3);
-      position: relative;
-      top: -10px;
+    .mn-item.on i {
+      filter: grayscale(0);
+      opacity: 1;
+      transform: translateY(-4px) scale(1.15);
+    }
+
+    .mn-item.on::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      width: 4px;
+      height: 4px;
+      background: var(--az);
+      border-radius: 50%;
     }
 
     @media(max-width:900px) {
@@ -882,16 +889,32 @@
       .sv-grid,
       .rd-grid {
         grid-template-columns: 1fr;
-        gap: 40px;
+        gap: 30px;
+      }
+
+      .stats-g {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .stat-c {
+        padding: 16px 12px;
+      }
+
+      .stat-n {
+        font-size: 24px;
+        margin-bottom: 2px;
       }
 
       .dep-grid-prev,
       .av-grid {
         grid-template-columns: 1fr;
+        gap: 20px;
       }
 
       .how-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: 1fr;
+        gap: 20px;
       }
 
       .nav-links {
@@ -899,7 +922,11 @@
       }
 
       .burger {
-        display: flex;
+        display: none !important;
+      }
+
+      .mob {
+        display: none !important;
       }
 
       .i-strip,
@@ -934,22 +961,32 @@
       }
 
       .mob-nav {
-        display: none !important;
+        display: flex !important;
+      }
+
+      body {
+        padding-bottom: 80px; /* space for mob-nav */
       }
 
       .waf-wrap {
-        bottom: 30px;
+        bottom: 90px;
+        right: 15px;
+        transform: scale(0.8);
+        transform-origin: bottom right;
       }
-      
+      .waf-tooltip {
+        display: none !important;
+      }
       .fr { display: none !important; }
       .hero-grid { display: block !important; padding: 0 20px; }
       .hero-btns { flex-direction: column !important; align-items: center; gap: 15px; }
       .btn-lg { width: 100% !important; justify-content: center; }
       .h1 { 
         font-size: 32px !important; 
-        line-height: 1.15 !important; 
+        line-height: 1.2 !important; 
         letter-spacing: -0.5px !important; 
         margin-bottom: 20px !important; 
+        padding: 0 10px;
       }
       .h2 { 
         font-size: 26px !important; 
@@ -967,7 +1004,13 @@
       .f-grid { grid-template-columns: 1fr !important; text-align: center; gap: 30px; }
       .f-col { align-items: center; display: flex; flex-direction: column; }
       .flinks { justify-content: center !important; flex-wrap: wrap; gap: 10px; }
-      .wrap { padding: 0 20px; }
+      .wrap { padding: 0 20px; width: 100%; overflow: hidden; }
+      
+      /* Fix Horizontal Overflow */
+      body, html { overflow-x: hidden !important; width: 100vw; position: relative; }
+      .b1, .b2, .h-blob { display: none !important; }
+      .hero { padding-top: 120px; overflow: hidden; }
+      .af-pg, .sv-hero, .rd-pg, .av-pg { padding-top: 80px; padding-bottom: 40px; }
     }
 
     @keyframes wap {
@@ -1004,27 +1047,35 @@
     }
 
     .wave {
-      animation: waveAnim 15s linear infinite;
+      animation: waveAnim 20s cubic-bezier(.55, .5, .45, .5) infinite;
       fill: rgba(255, 255, 255, 0.05);
     }
 
     .wave1 {
-      animation-duration: 10s;
+      animation-delay: -2s;
+      animation-duration: 9s;
       fill: rgba(255, 255, 255, 0.1);
     }
 
     .wave2 {
-      animation-duration: 13s;
+      animation-delay: -4s;
+      animation-duration: 14s;
       fill: rgba(255, 255, 255, 0.08);
+    }
+
+    .wave3 {
+      animation-delay: -6s;
+      animation-duration: 20s;
+      fill: rgba(255, 255, 255, 0.06);
     }
 
     @keyframes waveAnim {
       0% {
-        transform: translateX(0);
+        transform: translate3d(-90px, 0, 0);
       }
 
       100% {
-        transform: translateX(-1000px);
+        transform: translate3d(85px, 0, 0);
       }
     }
 
@@ -1576,19 +1627,19 @@
     }
 
     .sc.s1 {
-      border-top: 6px solid #1a56db;
+      border-top: 6px solid var(--az);
     }
 
     .sc.s2 {
-      border-top: 6px solid #16a34a;
+      border-top: 6px solid var(--vd);
     }
 
     .sc.s3 {
-      border-top: 6px solid #7c3aed;
+      border-top: 6px solid var(--az);
     }
 
     .sc.s4 {
-      border-top: 6px solid #ea580c;
+      border-top: 6px solid var(--vd);
     }
 
     .sc-ic {
@@ -2436,8 +2487,8 @@
       }
 
       .logo-img {
-        height: 100px;
-        margin: -10px 0;
+        height: 150px;
+        margin: -35px 0;
       }
 
       .mob {
@@ -2506,11 +2557,12 @@
       }
 
       .mob-nav {
-        display: flex;
+        display: flex !important;
+        z-index: 10000 !important;
       }
 
       .waf-wrap {
-        bottom: 100px;
+        bottom: 90px !important;
       }
     }
 
@@ -2599,11 +2651,11 @@
     <div class="nav-links">
       <button class="nl on" id="n-home" onclick="go('home')">Início</button>
       <button class="nl" id="n-servicos" onclick="go('servicos')">Serviços</button>
-      <button class="nl" id="n-afiliado" onclick="go('afiliado')">Seja Afiliado</button>
-      <button class="nl" id="n-avaliacoes" onclick="go('avaliacoes')">⭐ Avaliações</button>
+      <button class="nl" id="n-afiliado" onclick="go('afiliado')">Afiliados</button>
+      <button class="nl" id="n-avaliacoes" onclick="go('avaliacoes')">Avaliações</button>
       <button class="nl" id="n-redes" onclick="go('redes')">Redes Sociais</button>
-      <a href="https://wa.me/558391080635?text=Ol%C3%A1%21%20Vim%20pelo%20site%20do%20Clube%20Zero%20D%C3%ADvidas%20e%20quero%20saber%20mais%21%20%F0%9F%98%8A"
-        target="_blank" class="nl-wa">📲 Quero Saber Mais</a>
+      <a href="https://wa.me/558391080635?text=Ol%C3%A1%21%20Vim%20pelo%20site%20do%20Clube%20Zero%20D%C3%ADvidas%20e%20quero%20resolver%20meu%20problema%21"
+        target="_blank" class="nl-wa">Falar com especialista</a>
     </div>
     <button class="burger" id="burger" onclick="toggleMob()">
       <span></span><span></span><span></span>
@@ -2612,16 +2664,19 @@
 </nav>
 
 <div class="mob" id="mob">
-  <div style="padding: 20px 0; text-align: center; border-bottom: 1px solid var(--bd); margin-bottom: 20px;">
-    <img src="logo.png" alt="Logo" style="height:120px; width: auto;">
+  <div style="display:flex; justify-content:flex-end; margin-bottom: 5px;">
+    <button onclick="toggleMob()" style="background:var(--cz2); border:1px solid var(--bd); border-radius:50%; width:44px; height:44px; font-size:24px; color:var(--tx); cursor:pointer; display:flex; align-items:center; justify-content:center; box-shadow:var(--shadow-sm);">&times;</button>
   </div>
-  <button class="mb" onclick="go('home')">🏠 Início</button>
-  <button class="mb" onclick="go('servicos')">🛠️ Serviços</button>
-  <button class="mb" onclick="go('afiliado')">💼 Seja Afiliado</button>
-  <button class="mb" onclick="go('avaliacoes')">⭐ Avaliações</button>
-  <button class="mb" onclick="go('redes')">📱 Redes Sociais</button>
-  <a href="https://wa.me/558391080635?text=Ol%C3%A1%21%20Vim%20pelo%20site%20do%20Clube%20Zero%20D%C3%ADvidas%20e%20quero%20saber%20mais%21%20%F0%9F%98%8A"
-    target="_blank" class="mb-wa">📲 Quero Saber Mais Agora</a>
+  <div style="padding: 0 0 20px; text-align: center; border-bottom: 1px solid var(--bd); margin-bottom: 24px;">
+    <img src="logo.png" alt="Logo" style="height:110px; width: auto; margin: -20px 0;">
+  </div>
+  <button class="mb" onclick="go('home')"><span style="font-size:20px;width:30px;opacity:0.8;display:inline-block;text-align:center;">🏠</span> Início</button>
+  <button class="mb" onclick="go('servicos')"><span style="font-size:20px;width:30px;opacity:0.8;display:inline-block;text-align:center;">🛠️</span> Serviços</button>
+  <button class="mb" onclick="go('afiliado')"><span style="font-size:20px;width:30px;opacity:0.8;display:inline-block;text-align:center;">💼</span> Afiliados</button>
+  <button class="mb" onclick="go('avaliacoes')"><span style="font-size:20px;width:30px;opacity:0.8;display:inline-block;text-align:center;">⭐</span> Avaliações</button>
+  <button class="mb" onclick="go('redes')"><span style="font-size:20px;width:30px;opacity:0.8;display:inline-block;text-align:center;">📱</span> Redes Sociais</button>
+  <a href="https://wa.me/558391080635?text=Ol%C3%A1%21%20Vim%20pelo%20site%20do%20Clube%20Zero%20D%C3%ADvidas%20e%20quero%20resolver%20meu%20problema%21"
+    target="_blank" class="mb-wa">Falar com especialista</a>
 </div>
 
 <div class="pg on" id="pg-home">
@@ -2639,9 +2694,9 @@
         <p class="lead">O Clube Zero Dívidas ajuda você a resolver sua situação financeira de forma <strong>estratégica,
             jurídica e responsável</strong>.</p>
         <div class="hero-btns">
-          <a href="https://wa.me/558391080635?text=Ol%C3%A1%21%20Vim%20pelo%20site%20do%20Clube%20Zero%20D%C3%ADvidas%20e%20quero%20saber%20mais%20informa%C3%A7%C3%B5es%21%20%F0%9F%98%8A"
-            target="_blank" class="btn btn-g btn-lg fz">📲 Quero Saber Mais Agora</a>
-          <button class="btn btn-o btn-lg fz" onclick="go('servicos')">Ver Serviços →</button>
+          <a href="https://wa.me/558391080635?text=Ol%C3%A1%21%20Vim%20pelo%20site%20do%20Clube%20Zero%20D%C3%ADvidas%20e%20quero%20resolver%20meu%20problema%21"
+            target="_blank" class="btn btn-g btn-lg fz">Quero resolver meu problema</a>
+          <button class="btn btn-o btn-lg fz" onclick="go('servicos')">Ver serviços disponíveis</button>
         </div>
       </div>
       <div class="fr">
@@ -2660,16 +2715,16 @@
         </div>
         <div class="stats-g">
           <div class="stat-c">
-            <div class="stat-n"><span class="count" data-target="1200">0</span>+</div>
+            <div class="stat-n"><span class="count" data-target="2000">0</span>+</div>
             <div class="stat-l">Clientes Atendidos</div>
           </div>
           <div class="stat-c">
-            <div class="stat-n g"><span class="count" data-target="98">0</span>%</div>
+            <div class="stat-n g"><span class="count" data-target="97">0</span>%</div>
             <div class="stat-l">Satisfação Total</div>
           </div>
           <div class="stat-c">
-            <div class="stat-n">Principais</div>
-            <div class="stat-l">Soluções Ativas</div>
+            <div class="stat-n">+<span class="count" data-target="10">0</span>mil</div>
+            <div class="stat-l">Dívidas Resolvidas</div>
           </div>
         </div>
       </div>
@@ -2677,15 +2732,15 @@
 
     <div class="wrap fu">
       <div class="i-strip" style="margin-top:50px;">
-        <div class="is-ic">🔍</div>
+        <div class="is-ic">💡</div>
         <div>
-          <div class="is-tt">⭐ Descubra a Melhor Solução para Você!</div>
+          <div class="is-tt">Descubra a Melhor Solução para Você</div>
           <div class="is-dd">Antes de começar, nossa equipe pode te orientar sobre o melhor caminho. Cada caso é único —
-            seja Limpa Nome, Score, Bacen ou Rating. <strong>Estamos prontos para tirar todas as suas dúvidas agora mesmo.</strong></div>
+            seja Limpa Nome, Score, Bacen ou Rating. <strong>Estamos prontos para orientá-lo agora mesmo.</strong></div>
           <div style="margin-top:18px;display:flex;gap:10px;flex-wrap:wrap;">
-            <a href="https://wa.me/558391080635?text=Ol%C3%A1%21%20Vim%20pelo%20site%20do%20Clube%20Zero%20D%C3%ADvidas%20e%20gostaria%20de%20saber%20mais%20sobre%20as%20solu%C3%A7%C3%B5es%21%20%F0%9F%98%8E"
-              target="_blank" class="btn btn-g" style="font-size:15px;">🔍 Quero Saber Mais</a>
-            <button class="btn btn-o" onclick="go('servicos')" style="font-size:15px;">Ver todos os serviços →</button>
+            <a href="https://wa.me/558391080635?text=Ol%C3%A1%21%20Vim%20pelo%20site%20do%20Clube%20Zero%20D%C3%ADvidas%20e%20gostaria%20de%20falar%20com%20um%20especialista"
+              target="_blank" class="btn btn-g" style="font-size:15px;">Falar com especialista</a>
+            <button class="btn btn-o" onclick="go('servicos')" style="font-size:15px;">Ver serviços</button>
           </div>
         </div>
       </div>
@@ -2769,15 +2824,15 @@
       <h2 class="h2" style="color:#fff;">Impacto real na vida de <span class="g">milhares de brasileiros</span></h2>
       <div class="st-grid">
         <div class="st-card fu">
-          <div class="st-num"><span class="count" data-target="1200">0</span>+</div>
+          <div class="st-num"><span class="count" data-target="2000">0</span>+</div>
           <div class="st-txt">Clientes Atendidos</div>
         </div>
         <div class="st-card fz">
-          <div class="st-num"><span class="count" data-target="98">0</span>%</div>
+          <div class="st-num"><span class="count" data-target="97">0</span>%</div>
           <div class="st-txt">Taxa de Satisfação</div>
         </div>
         <div class="st-card fr">
-          <div class="st-num"><span class="count" data-target="15">0</span>M+</div>
+          <div class="st-num">+<span class="count" data-target="10">0</span>mil</div>
           <div class="st-txt">Dívidas Resolvidas</div>
         </div>
       </div>
@@ -2893,17 +2948,18 @@
       <g class="parallax">
         <use href="#gentle-wave" x="48" y="0" class="wave wave1" />
         <use href="#gentle-wave" x="48" y="3" class="wave wave2" />
-        <use href="#gentle-wave" x="48" y="5" class="wave" />
+        <use href="#gentle-wave" x="48" y="5" class="wave wave3" />
+        <use href="#gentle-wave" x="48" y="7" class="wave" />
       </g>
     </svg>
     <div class="cta-in">
       <div class="cta-tag">🎯 PRONTO PARA RECOMEÇAR?</div>
-      <h2 class="cta-h">Dívidas não definem quem você é.</h2>
+      <h2 class="cta-h">Dívidas não definem quem você&nbsp;é.</h2>
       <p class="cta-d">Dê o primeiro passo hoje. Nossa equipe analisa sua situação e mostra o melhor caminho.</p>
       <div class="cta-btns">
-        <a href="https://wa.me/558391080635?text=Ol%C3%A1%21%20Vim%20pelo%20site%20do%20Clube%20Zero%20D%C3%ADvidas%20e%20quero%20fazer%20meu%20Diagn%C3%B3stico%20Financeiro%21%20%F0%9F%94%8D"
-          target="_blank" class="btn btn-w btn-lg cta-btn-pulse">📲 Falar no WhatsApp Agora</a>
-        <button class="btn btn-ow btn-lg" onclick="go('servicos')">Ver Nossos Serviços →</button>
+        <a href="https://wa.me/558391080635?text=Ol%C3%A1%21%20Vim%20pelo%20site%20do%20Clube%20Zero%20D%C3%ADvidas%20e%20quero%20fazer%20meu%20Diagn%C3%B3stico%20Financeiro%21"
+          target="_blank" class="btn btn-w btn-lg cta-btn-pulse">Falar com especialista agora</a>
+        <button class="btn btn-ow btn-lg" onclick="go('servicos')">Ver nossos serviços</button>
       </div>
     </div>
   </div>
@@ -2919,13 +2975,13 @@
       <p class="lead">Cada caso é único. Recomendamos sempre começar com um diagnóstico para descobrir qual serviço é
         ideal para você.</p>
       <div class="diag-box fu">
-        <div class="db-ic">🔍</div>
+        <div class="db-ic">💡</div>
         <div>
-          <div class="db-tt">⭐ Tire suas dúvidas com especialistas!</div>
+          <div class="db-tt">Tire suas dúvidas com especialistas</div>
           <div class="db-dd">Nossa equipe analisa seu caso de forma personalizada para indicar o melhor caminho. <strong>Saiba exatamente como podemos te ajudar a recuperar sua liberdade financeira.</strong></div>
           <div style="margin-top:18px;"><a
-              href="https://wa.me/558391080635?text=Ol%C3%A1%21%20Vim%20pelo%20site%20do%20Clube%20Zero%20D%C3%ADvidas%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20os%20servi%C3%A7os%21%20%F0%9F%92%AA"
-              target="_blank" class="btn btn-g" style="font-size:15px;">🔍 Quero Saber Mais</a></div>
+              href="https://wa.me/558391080635?text=Ol%C3%A1%21%20Vim%20pelo%20site%20do%20Clube%20Zero%20D%C3%ADvidas%20e%20quero%20falar%20com%20um%20especialista"
+              target="_blank" class="btn btn-g" style="font-size:15px;">Falar com especialista</a></div>
         </div>
       </div>
     </div>
@@ -2941,8 +2997,8 @@
         SCPC, CEPROT, Boa Vista e demais órgãos de proteção ao crédito. Ideal para quem tem dívidas ativas em aberto nos
         birôs.</p>
       <span class="sc-tag">Para quem está no SPC, Serasa e outros</span>
-      <a href="https://wa.me/558391080635?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20tenho%20interesse%20no%20servi%C3%A7o%20de%20%2ALimpa%20Nome%2A.%20Gostaria%20de%20saber%20mais%21%20%F0%9F%A7%B9"
-        target="_blank" class="sc-btn">💬 Solicitar Limpa Nome</a>
+      <a href="https://wa.me/558391080635?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20tenho%20interesse%20no%20servi%C3%A7o%20de%20%2ALimpa%20Nome%2A"
+        target="_blank" class="sc-btn">Falar com especialista</a>
     </div>
     <div class="sc fr s2">
       <div class="sc-ic">📈</div>
@@ -2950,8 +3006,8 @@
       <p class="sc-dd">Estratégias personalizadas para aumentar sua pontuação de crédito de forma consistente. Reabre
         portas para financiamentos, cartões e empréstimos no mercado financeiro.</p>
       <span class="sc-tag">Para quem quer melhorar o score</span>
-      <a href="https://wa.me/558391080635?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20%2AAumento%20de%20Score%2A.%20Como%20funciona%3F%20%F0%9F%93%88"
-        target="_blank" class="sc-btn" style="background:var(--vd-grad);">💬 Falar sobre Score</a>
+      <a href="https://wa.me/558391080635?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20quero%20resolver%20meu%20problema%20com%20%2AAumento%20de%20Score%2A"
+        target="_blank" class="sc-btn">Falar com especialista</a>
     </div>
     <div class="sc fl s3">
       <div class="sc-ic">🏦</div>
@@ -2959,9 +3015,8 @@
       <p class="sc-dd">Solução especializada para regularização de restrições no Banco Central do Brasil. Essencial para
         quem tem pendências com instituições financeiras reguladas pelo Bacen.</p>
       <span class="sc-tag">Para restrições no Banco Central</span>
-      <a href="https://wa.me/558391080635?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20preciso%20de%20ajuda%20com%20%2ALimpa%20Bacen%2A.%20Podem%20me%20ajudar%3F%20%F0%9F%8F%A6"
-        target="_blank" class="sc-btn" style="background:linear-gradient(135deg, #7c3aed, #6d28d9);">💬 Falar sobre
-        Bacen</a>
+      <a href="https://wa.me/558391080635?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20quero%20resolver%20minha%20situa%C3%A7%C3%A3o%20com%20o%20%2ABacen%2A"
+        target="_blank" class="sc-btn">Falar com especialista</a>
     </div>
     <div class="sc fr s4">
       <div class="sc-ic">⭐</div>
@@ -2969,9 +3024,8 @@
       <p class="sc-dd">Melhoria e construção do seu rating de crédito — avaliação de risco usada por bancos e credores.
         Um bom rating abre acesso a melhores condições, taxas menores e limites maiores.</p>
       <span class="sc-tag">Para construir crédito sólido</span>
-      <a href="https://wa.me/558391080635?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20tenho%20interesse%20em%20melhorar%20meu%20%2ARating%20de%20Cr%C3%A9dito%2A%21%20%E2%AD%90"
-        target="_blank" class="sc-btn" style="background:linear-gradient(135deg, #ea580c, #c2410c);">💬 Falar sobre
-        Rating</a>
+      <a href="https://wa.me/558391080635?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20tenho%20interesse%20em%20melhorar%20meu%20%2ARating%20de%20Cr%C3%A9dito%2A"
+        target="_blank" class="sc-btn">Falar com especialista</a>
     </div>
   </div>
 
@@ -3012,9 +3066,11 @@
         <div style="position: relative; padding-bottom: 56.25%; height: 0;">
           <iframe 
             style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" 
-            src="https://www.youtube.com/embed/MlyrFdY8Tyw" 
+            src="https://www.youtube-nocookie.com/embed/MlyrFdY8Tyw?rel=0&modestbranding=1&playsinline=1&origin=https://clubezerodividas.com.br" 
             title="Apresentação Oficial Clube Zero Dívidas" 
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            referrerpolicy="no-referrer-when-downgrade"
+            loading="lazy"
             allowfullscreen>
           </iframe>
         </div>
@@ -3162,20 +3218,19 @@
       </div>
 
       <div class="af-cta fu">
-        <div style="font-size:48px;margin-bottom:16px;">🤝</div>
         <div class="af-cta-tt">Sua Liberdade Começa Aqui</div>
         <div class="af-cta-dd">Adesão de apenas <strong>R$70,00</strong> + mensalidade <strong>R$39,90</strong>.</div>
         <div
           style="background:rgba(26,86,219,0.05); padding:20px; border-radius:14px; margin-bottom:28px; border:1px dashed var(--az);">
-          <div style="font-weight:800; color:var(--az); margin-bottom:6px;">🛡️ Garantia de Adaptação</div>
+          <div style="font-weight:800; color:var(--az); margin-bottom:6px;">Garantia de Adaptação</div>
           <p style="font-size:14.5px; color:var(--tx2); font-weight:500;">Caso não se adapte ao trabalho, <strong>você
               não precisa continuar como associado</strong>. Pode solicitar o cancelamento a qualquer momento.</p>
         </div>
         <div class="af-btns">
           <a href="https://clubezerodividas.com.br/platform/auth/register.php?ref=15" target="_blank"
-            class="btn btn-b btn-lg">🚀 Cadastrar como Afiliado</a>
-          <a href="https://wa.me/558391080635?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20tenho%20interesse%20em%20me%20tornar%20%2AAfiliado%2A%20do%20Clube%20Zero%20D%C3%ADvidas%21%20%F0%9F%A4%9D"
-            target="_blank" class="btn btn-g btn-lg">📲 Tirar Dúvidas no WhatsApp</a>
+            class="btn btn-g btn-lg">Quero ser um afiliado</a>
+          <a href="https://wa.me/558391080635?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20tenho%20interesse%20em%20me%20tornar%20%2AAfiliado%2A%20do%20Clube%20Zero%20D%C3%ADvidas%21"
+            target="_blank" class="btn btn-o btn-lg">Falar com especialista</a>
         </div>
       </div>
     </div>
@@ -3335,16 +3390,16 @@
 </div>
 
 <div class="cta-diag fu">
-    <div class="cd-ic">🤔</div>
-    <div class="cd-tt">Não sabe qual serviço precisa?</div>
+    <div class="cd-ic">💡</div>
+    <div class="cd-tt">Não sabe de qual serviço precisa?</div>
     <div class="cd-dd">Fale com nossa equipe! Analisamos sua situação e indicamos exatamente o que você precisa.</div>
-    <a href="https://wa.me/558391080635?text=Ol%C3%A1%21%20Vim%20pelo%20site%20do%20Clube%20Zero%20D%C3%ADvidas%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%21%20%E2%9C%A8"
-      target="_blank" class="cd-btn">📲 Quero Saber Mais</a>
+    <a href="https://wa.me/558391080635?text=Ol%C3%A1%21%20Vim%20pelo%20site%20do%20Clube%20Zero%20D%C3%ADvidas%20e%20gostaria%20de%20falar%20com%20um%20especialista"
+      target="_blank" class="cd-btn">Falar com especialista</a>
   </div>
 
 <footer class="f-main">
     <div style="max-width:1140px; margin:0 auto; display:flex; flex-direction:column; align-items:center; text-align:center; gap:20px;">
-      <img src="logo.png" alt="Clube Zero Dívidas" style="height:90px; filter:brightness(0) invert(1); opacity:0.9;">
+      <img src="logo.png" alt="Clube Zero Dívidas" style="height:160px; filter:brightness(0) invert(1); opacity:0.9;">
       <p style="color:rgba(255,255,255,0.6); font-size:15px; max-width:420px; line-height:1.7;">Especialistas em recuperação de crédito. Ajudamos você a recuperar seu nome e sua liberdade financeira.</p>
       <div style="display:flex; gap:20px; flex-wrap:wrap; justify-content:center; margin-top:4px;">
         <a href="https://wa.me/558391080635" target="_blank" style="color:#22c55e; font-size:15px; font-weight:700; text-decoration:none;">📲 (83) 9108-0635</a>
@@ -3356,6 +3411,30 @@
       </div>
     </div>
   </footer>
+
+<div class="mob-nav">
+  <button class="mn-item on" onclick="go('home')">
+    <i>🏠</i>
+    <span>Início</span>
+  </button>
+  <button class="mn-item" onclick="go('servicos')">
+    <i>🛠️</i>
+    <span>Serviços</span>
+  </button>
+  <button class="mn-item" onclick="go('afiliado')">
+    <div style="position:absolute; top:-4px; right:10%; background:var(--vd2); color:#fff; font-size:9px; font-weight:800; padding:2px 5px; border-radius:10px; box-shadow:0 2px 5px rgba(34,197,94,0.3); border:1px solid rgba(255,255,255,0.4);">NOVO</div>
+    <i>💼</i>
+    <span>Afiliados</span>
+  </button>
+  <button class="mn-item" onclick="go('avaliacoes')">
+    <i>⭐</i>
+    <span>Avaliação</span>
+  </button>
+  <button class="mn-item" onclick="go('redes')">
+    <i>📱</i>
+    <span>Redes</span>
+  </button>
+</div>
 
 <div class="waf-wrap">
 
@@ -3414,10 +3493,10 @@
     const timer = setInterval(() => {
       curr += step;
       if (curr >= target) {
-        el.textContent = target;
+        el.textContent = target.toLocaleString('pt-BR');
         clearInterval(timer);
       } else {
-        el.textContent = Math.floor(curr);
+        el.textContent = Math.floor(curr).toLocaleString('pt-BR');
       }
     }, 16);
   }
