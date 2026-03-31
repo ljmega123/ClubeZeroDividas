@@ -34,10 +34,10 @@
 
       /* Premium Shadow System (Layered for Depth) */
       --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-      --shadow-md: 0 2px 6px rgba(0, 0, 0, 0.04);
-      --shadow-lg: 0 4px 12px rgba(0, 0, 0, 0.05);
-      --shadow-xl: 0 10px 20px rgba(0, 0, 0, 0.06);
-      --shadow-premium: 0 15px 35px rgba(0, 0, 0, 0.08); /* Softer and cleaner */
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      --shadow-premium: 0 35px 60px -15px rgba(0, 0, 0, 0.1);
       
       /* Animation Curves */
       --ease: cubic-bezier(0.4, 0, 0.2, 1);
@@ -62,10 +62,9 @@
       color: var(--tx);
       background: #fff;
       overflow-x: hidden;
-      line-height: 1.5;
+      line-height: 1.6;
       -webkit-font-smoothing: antialiased;
       transition: opacity 0.3s var(--ease);
-      font-size: 16px;
     }
 
     a,
@@ -90,20 +89,6 @@
       align-items: center;
       justify-content: center;
       transition: opacity .5s var(--ease), visibility .5s;
-    }
-
-    #loader img {
-      height: 60px;
-      width: auto;
-      transform: scale(2.0);
-      margin-bottom: 40px;
-      filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));
-      animation: pulse-logo 2.5s infinite var(--ease-in-out);
-    }
-
-    @keyframes pulse-logo {
-      0%, 100% { transform: scale(2.0); }
-      50% { transform: scale(2.2); }
     }
 
     .loader-content {
@@ -141,39 +126,67 @@
     }
 
     .announcement {
-      display: none;
-    }
-
-    nav {
+      background: linear-gradient(90deg, var(--az2), var(--az));
+      color: #fff;
+      font-size: 13px;
+      font-weight: 700;
+      text-align: center;
+      padding: 8px 20px;
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
+      z-index: 10000;
+      letter-spacing: 0.5px;
+    }
+
+    @media(max-width: 900px) {
+      .announcement {
+        position: relative;
+        font-size: 12px;
+      }
+      nav {
+        top: 0 !important;
+      }
+    }
+
+    nav {
+      position: fixed;
+      top: 16px;
+      left: 20px;
+      right: 20px;
       z-index: 9999;
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(20px) saturate(180%);
-      -webkit-backdrop-filter: blur(20px) saturate(180%);
-      border-bottom: 1px solid var(--bd);
-      transition: all .3s var(--ease);
-      max-width: 100%;
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(24px) saturate(180%);
+      -webkit-backdrop-filter: blur(24px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      border-radius: 24px;
+      transition: all .5s var(--ease);
+      max-width: 1200px;
       margin: 0 auto;
-      box-shadow: 0 1px 12px rgba(0, 0, 0, 0.06);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
     }
 
     nav.scrolled {
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      top: 0;
+      width: 100%;
+      max-width: 100%;
+      border-radius: 0;
+      background: rgba(255, 255, 255, 0.9);
+      border: none;
+      border-bottom: 1px solid var(--bd);
+      height: 80px;
     }
 
     .nav-in {
       width: 100%;
       max-width: 1140px;
       margin: 0 auto;
-      height: 125px;
+      height: 100%;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 20px;
-      transition: height 0.3s var(--ease);
+      padding: 0 24px;
     }
 
     .brand {
@@ -182,31 +195,21 @@
       cursor: pointer;
       display: flex;
       align-items: center;
-      padding: 0;
-      border-radius: 8px;
+      padding: 4px 8px;
+      border-radius: 10px;
       transition: all .2s;
     }
 
     .logo-img {
-      height: 60px;
+      height: 160px;
       width: auto;
       display: block;
-      margin: 0;
-      transform: scale(2.8);
-      transform-origin: center;
-      filter: drop-shadow(0 8px 16px rgba(0,0,0,0.15));
-      transition: all 0.3s var(--ease);
-    }
-    .navbar.scrolled .logo-img {
-      height: 50px;
-      transform: scale(2.0);
-    }
-    .navbar.scrolled .nav-in {
-      height: 80px;
+      margin: -35px 0;
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
-    .brand:active .logo-img {
-      transform: scale(3.0) rotate(-2deg);
+    .brand:hover .logo-img {
+      transform: scale(1.1) rotate(-2deg);
     }
 
     .nav-links {
@@ -477,15 +480,15 @@
 
     .tag {
       display: inline-block;
-      font-size: 10px;
+      font-size: 11px;
       font-weight: 800;
-      letter-spacing: 1.5px;
+      letter-spacing: 2px;
       text-transform: uppercase;
       color: var(--az);
       background: var(--azs);
-      padding: 4px 12px;
-      border-radius: 6px;
-      margin-bottom: 16px;
+      padding: 6px 16px;
+      border-radius: 50px;
+      margin-bottom: 20px;
     }
 
     .h1 {
@@ -523,10 +526,12 @@
     }
 
     .grad {
-      background: linear-gradient(135deg, var(--az), var(--vd2));
+      background: linear-gradient(135deg, var(--az) 20%, var(--vd2) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
+      background-size: 200% auto;
+      animation: shine-text 5s linear infinite;
     }
 
     .fu,
@@ -534,22 +539,53 @@
     .fr,
     .fz {
       opacity: 0;
-      transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
-      transform: translateY(15px);
+      transition: opacity 1.2s var(--ease), transform 1.2s var(--ease), filter 1.2s var(--ease);
+      filter: blur(8px);
+    }
+
+    .fu {
+      transform: translateY(30px);
+    }
+
+    .fl {
+      transform: translateX(-30px);
+    }
+
+    .fr {
+      transform: translateX(30px);
+    }
+
+    .fz {
+      transform: scale(0.95);
     }
 
     .vis {
       opacity: 1 !important;
-      transform: translateY(0) !important;
+      transform: none !important;
+      filter: blur(0) !important;
     }
 
     @keyframes floating {
-      0%,
+      0% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-10px);
+      }
+
       100% {
         transform: translateY(0);
       }
-      50% {
-        transform: translateY(-8px);
+    }
+
+    @keyframes shine-text {
+      0% {
+        background-position: 0% 50%;
+      }
+
+      100% {
+        background-position: 200% 50%;
       }
     }
 
@@ -961,24 +997,24 @@
     @media(max-width:900px) {
       /* === BASE MOBILE RESET === */
       body, html { overflow-x: hidden !important; width: 100%; position: relative; }
-      body { padding-bottom: 80px; }
+      body { padding-bottom: 70px; }
 
       /* === NAVIGATION === */
       .nav-in {
-        height: 80px;
+        height: 64px;
         padding: 0 16px;
-        justify-content: center;
-        overflow: visible;
       }
       .logo-img {
-        height: 48px;
-        transform: scale(3.2);
-        transform-origin: center;
-        filter: drop-shadow(0 10px 20px rgba(0,0,0,0.2));
-        margin: 0;
+        height: 110px;
+        margin: -23px 0;
       }
       .nav-links { display: none; }
       .burger { display: none !important; }
+      .announcement {
+        position: relative;
+        font-size: 11px;
+        padding: 6px 16px;
+      }
       nav { top: 0 !important; }
 
       /* === BOTTOM NAV BAR === */
@@ -1004,11 +1040,10 @@
       /* === DECORATIVE ELEMENTS === */
       .b1, .b2, .h-blob { display: none !important; }
       .fr { display: none !important; }
-      .tag, .badge, .waves, .scroll-progress { display: none !important; }
 
       /* === HERO === */
       .hero {
-        padding: 72px 0 36px;
+        padding: 80px 0 40px;
         min-height: auto;
         text-align: center;
         overflow: hidden;
@@ -1020,15 +1055,7 @@
       .hero-btns {
         flex-direction: column !important;
         align-items: stretch;
-        gap: 10px;
-      }
-      /* Esconde o card flutuante e stats no mobile — deixa só o texto */
-      .depo-mini, .stats-g {
-        display: none !important;
-      }
-      /* Esconde o lado direito do hero grid */
-      .hero-grid > .fr {
-        display: none !important;
+        gap: 12px;
       }
 
       /* === TYPOGRAPHY === */
@@ -1073,8 +1100,6 @@
       .stat-c {
         padding: 14px 12px;
         border-radius: 14px;
-        box-shadow: none !important;
-        border: 1px solid var(--bd) !important;
       }
       .stat-n {
         font-size: 22px;
@@ -1087,28 +1112,26 @@
       /* === SECTIONS SPACING === */
       .prev-sec,
       .how-sec,
-      .faq-sec { padding: 44px 0 !important; }
-      .stats-sec { padding: 50px 20px; }
-      .cta-sec { padding: 50px 20px; }
+      .faq-sec { padding: 50px 0 !important; }
+      .stats-sec { padding: 60px 20px; }
+      .cta-sec { padding: 60px 20px; }
       .af-pg, .sv-hero, .rd-pg, .av-pg {
-        padding-top: 72px;
-        padding-bottom: 36px;
+        padding-top: 80px;
+        padding-bottom: 40px;
       }
-      .sv-grid { padding: 24px 16px 0; gap: 14px; }
+      .sv-grid { padding: 30px 20px 0; gap: 16px; }
 
       /* === SERVICE CARDS === */
       .sc {
-        padding: 24px 20px;
-        border-radius: 16px;
-        box-shadow: none !important;
+        padding: 28px 22px;
+        border-radius: 20px;
       }
-      .sc-ic { font-size: 32px; margin-bottom: 12px; }
-      .sc-tt { font-size: 18px; margin-bottom: 8px; }
+      .sc-ic { font-size: 38px; margin-bottom: 16px; }
+      .sc-tt { font-size: 20px; margin-bottom: 10px; }
       .sc-btn {
-        font-size: 14px;
-        padding: 12px;
-        border-radius: 12px;
-        box-shadow: none !important;
+        font-size: 15px;
+        padding: 15px;
+        border-radius: 14px;
       }
 
       /* === INFO STRIPS === */
@@ -1118,9 +1141,8 @@
         gap: 12px;
         padding: 22px 20px;
         border-radius: 16px;
-        box-shadow: none !important;
       }
-      .is-ic, .db-ic { font-size: 32px; }
+      .is-ic, .db-ic { font-size: 36px; }
       .is-tt, .db-tt { font-size: 16px; }
       .is-dd, .db-dd { font-size: 14px; }
 
@@ -1128,7 +1150,6 @@
       .how-c {
         padding: 20px 18px;
         border-radius: 16px;
-        box-shadow: none !important;
       }
       .how-ic { font-size: 28px; margin-bottom: 10px; }
       .how-tt { font-size: 14px; }
@@ -1147,23 +1168,20 @@
         border-radius: 18px;
       }
       .g-card {
-        padding: 20px 16px;
-        border-radius: 14px;
-        box-shadow: none !important;
+        padding: 22px 18px;
+        border-radius: 16px;
       }
       .g-tt { font-size: 16px; }
       .g-dd { font-size: 14px; }
       .nv-box {
         padding: 24px 18px;
         border-radius: 16px;
-        box-shadow: none !important;
       }
       .nv-row { flex-direction: column; gap: 8px; padding: 14px 0; }
       .nv-badge { align-self: flex-start; }
       .sim-card {
-        padding: 20px 16px;
-        border-radius: 16px;
-        box-shadow: none !important;
+        padding: 24px 18px;
+        border-radius: 18px;
       }
 
       /* === REVIEWS === */
@@ -1201,15 +1219,15 @@
       .flinks { justify-content: center !important; flex-wrap: wrap; gap: 10px; }
 
       /* === WRAP === */
-      .wrap { padding: 0 16px; width: 100%; overflow: hidden; }
+      .wrap { padding: 0 18px; width: 100%; overflow: hidden; }
 
       /* === SOCIAL === */
-      .rd-card { padding: 24px 16px; border-radius: 14px; box-shadow: none !important; }
-      .rd-nm { font-size: 16px; }
-      .rd-dd { font-size: 13px; }
+      .rd-card { padding: 28px 20px; border-radius: 18px; }
+      .rd-nm { font-size: 18px; }
+      .rd-dd { font-size: 14px; }
 
       /* === DEPOSITION === */
-      .dep { padding: 20px; border-radius: 14px; box-shadow: none !important; }
+      .dep { padding: 20px; border-radius: 16px; }
       .dep-txt { font-size: 13.5px; }
 
       /* === CAROUSEL === */
@@ -1228,10 +1246,9 @@
       .badge { padding: 6px 14px; font-size: 11px; }
 
       /* === CTA SECTION === */
-      .cta-h { font-size: 22px !important; margin-bottom: 12px !important; }
-      .cta-d { font-size: 14px; margin-bottom: 24px !important; }
-      .cta-btns { flex-direction: column; gap: 10px; }
-      .cd-btn { box-shadow: none !important; }
+      .cta-h { font-size: 22px !important; margin-bottom: 20px !important; }
+      .cta-d { font-size: 14px; margin-bottom: 28px !important; }
+      .cta-btns { flex-direction: column; gap: 12px; }
     }
 
     @keyframes wap {
@@ -1256,6 +1273,48 @@
       position: relative;
       overflow: hidden;
       color: #fff;
+    }
+
+    .waves {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 150px;
+      z-index: 0;
+    }
+
+    .wave {
+      animation: waveAnim 20s cubic-bezier(.55, .5, .45, .5) infinite;
+      fill: rgba(255, 255, 255, 0.05);
+    }
+
+    .wave1 {
+      animation-delay: -2s;
+      animation-duration: 9s;
+      fill: rgba(255, 255, 255, 0.1);
+    }
+
+    .wave2 {
+      animation-delay: -4s;
+      animation-duration: 14s;
+      fill: rgba(255, 255, 255, 0.08);
+    }
+
+    .wave3 {
+      animation-delay: -6s;
+      animation-duration: 20s;
+      fill: rgba(255, 255, 255, 0.06);
+    }
+
+    @keyframes waveAnim {
+      0% {
+        transform: translate3d(-90px, 0, 0);
+      }
+
+      100% {
+        transform: translate3d(85px, 0, 0);
+      }
     }
 
     .cta-btn-pulse {
@@ -1296,6 +1355,64 @@
       overflow: hidden;
     }
 
+    @keyframes blobMove {
+      0% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(100px, -150px) scale(1.3); }
+      66% { transform: translate(-80px, 80px) scale(0.8); }
+      100% { transform: translate(0, 0) scale(1); }
+    }
+
+    .hero-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      overflow: hidden;
+      background: #fff;
+    }
+
+    .h-blob {
+      position: absolute;
+      filter: blur(120px);
+      border-radius: 50%;
+      opacity: 0.35;
+      animation: blobMove 25s infinite alternate;
+      mix-blend-mode: multiply;
+    }
+
+    .b1 {
+      width: 800px;
+      height: 800px;
+      background: radial-gradient(circle, var(--az) 0%, transparent 70%);
+      top: -200px;
+      right: -200px;
+    }
+
+    .b2 {
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(circle, var(--vd) 0%, transparent 70%);
+      bottom: -150px;
+      left: -150px;
+      animation-delay: -12s;
+    }
+
+    .b3 {
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, #f59e0b 0%, transparent 70%);
+      top: 20%;
+      left: 30%;
+      opacity: 0.15;
+      animation-duration: 30s;
+    }
+
+    .parallax-wrap {
+      transition: transform 0.1s ease-out;
+    }
+
     .hero-grid {
       display: grid;
       grid-template-columns: 1fr 1.1fr;
@@ -1309,14 +1426,16 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: #f0fdf4;
-      border: 1px solid #dcfce7;
-      color: #166534;
-      font-size: 12px;
+      background: rgba(220, 252, 231, 0.6);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(34, 197, 94, .2);
+      color: var(--vd);
+      font-size: 13px;
       font-weight: 700;
-      padding: 6px 16px;
-      border-radius: 100px;
-      margin-bottom: 20px;
+      padding: 8px 20px;
+      border-radius: 30px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow-sm);
     }
 
     .bdot {
@@ -1346,10 +1465,12 @@
     }
 
     .grad {
-      background: linear-gradient(135deg, var(--az), var(--vd2));
+      background: linear-gradient(90deg, var(--az), var(--vd), var(--az));
+      background-size: 200% auto;
       -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
       background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shine-text 4s linear infinite;
     }
 
     .hero-btns {
@@ -1359,7 +1480,94 @@
       margin-top: 40px;
     }
 
+    .depo-mini {
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(15px);
+      border-radius: 24px;
+      padding: 32px;
+      box-shadow: var(--shadow-premium);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      margin-bottom: 24px;
+      position: relative;
+      z-index: 2;
+      animation: float 6s ease-in-out infinite;
+    }
 
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-15px);
+      }
+    }
+
+    .dm-label {
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--tx3);
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .dm-quote {
+      font-size: 16px;
+      color: var(--tx);
+      font-style: italic;
+      line-height: 1.6;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    .dm-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .dm-av {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--az-grad);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-weight: 800;
+      font-size: 18px;
+      box-shadow: 0 4px 12px rgba(26, 86, 219, 0.3);
+    }
+
+    .dm-name {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--tx);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .dm-stars {
+      font-size: 12px;
+      color: #f59e0b;
+      letter-spacing: 2px;
+    }
+
+    .dm-badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--vd);
+      background: var(--vds);
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-top: 6px;
+    }
 
     .stats-g {
       display: grid;
@@ -1368,13 +1576,14 @@
     }
 
     .stat-c {
-      background: #fff;
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(10px);
       border-radius: 20px;
       padding: 24px 15px;
       text-align: center;
-      border: 1px solid var(--bd);
+      border: 1px solid rgba(255, 255, 255, 0.5);
       transition: all .3s var(--ease);
-      box-shadow: var(--shadow-sm);
+      box-shadow: var(--shadow-md);
     }
 
     .stat-c:hover {
@@ -1726,6 +1935,16 @@
       text-align: center;
       position: relative;
       overflow: hidden;
+    }
+
+    .stats-sec::before {
+      content: '';
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(22, 163, 74, 0.1), transparent 70%);
+      top: -300px;
+      left: -300px;
     }
 
     .st-grid {
@@ -2518,17 +2737,14 @@
         font-size: 14px !important;
       }
       .logo-img {
-        height: 44px;
-        transform: scale(2.2);
-        margin: 0 auto;
+        height: 95px;
+        margin: -20px 0;
       }
       .nav-in {
-        height: 80px;
-        justify-content: center;
-        overflow: visible;
+        height: 56px;
       }
       .hero {
-        padding-top: 64px;
+        padding-top: 76px;
       }
       .pb-h { font-size: 20px !important; }
       .pb-stats>div {
@@ -2538,6 +2754,10 @@
       }
       .pbs-n { font-size: 30px; }
       .st-num { font-size: 36px; }
+      .announcement {
+        font-size: 10px;
+        padding: 4px 12px;
+      }
       .cta-h { font-size: 22px !important; }
       .arb-num { font-size: 48px; }
       .av-card-txt { font-size: 13px; }
@@ -2552,7 +2772,7 @@
 </head>
 <div id="loader">
   <div class="loader-content" style="display:flex; flex-direction:column; align-items:center; justify-content:center;">
-    <img src="logo.png" alt="Logo" style="height:auto; width:80%; max-width:280px; display:block; margin: 0 auto 32px;">
+    <img src="logo.png" alt="Logo" style="height:auto; width:90%; max-width:350px; margin-bottom:40px; display:block; margin: 0 auto;">
     <div class="loader-bar-wrap">
       <div class="loader-bar" id="loader-bar"></div>
     </div>
@@ -2560,6 +2780,10 @@
 </div>
 
 <div class="scroll-progress" id="scroll-bar"></div>
+
+<div class="announcement">
+  🔥 Saiba como limpar seu nome agora! Fale conosco e recupere seu crédito.
+</div>
 
 <nav id="navbar">
   <div class="nav-in">
@@ -2582,9 +2806,9 @@
 </nav>
 
 <div class="mob" id="mob">
-  <div class="mob-header" style="justify-content: center; position: relative; height: 90px; overflow: visible;">
-    <img src="logo.png" alt="Logo" style="height:48px; width: auto; transform: scale(3.5); filter: drop-shadow(0 8px 20px rgba(0,0,0,0.25));">
-    <button class="mob-close" onclick="toggleMob()" aria-label="Fechar menu" style="position: absolute; right: 20px; font-size: 32px; background: white; border-radius: 50%; width: 40px; height: 40px; box-shadow: 0 2px 8px rgba(0,0,0,0.2);">X</button>
+  <div class="mob-header">
+    <img src="logo.png" alt="Logo" style="height:48px; width: auto;">
+    <button class="mob-close" onclick="toggleMob()" aria-label="Fechar menu">&times;</button>
   </div>
   <div class="mob-body">
     <button class="mb" onclick="go('home')">
@@ -2631,6 +2855,11 @@
 
 <div class="pg on" id="pg-home">
   <div class="hero">
+    <div class="hero-bg">
+      <div class="h-blob b1"></div>
+      <div class="h-blob b2"></div>
+      <div class="h-blob b3"></div>
+    </div>
     <div class="wrap hero-grid">
       <div class="fl">
         <div class="badge fz">
@@ -2646,6 +2875,19 @@
         </div>
       </div>
       <div class="fr">
+        <div class="depo-mini">
+          <div class="dm-label">💬 O que nossos clientes dizem</div>
+          <div class="dm-quote">Estava com o nome sujo a quase 5 anos e ja tinha perdido a esperanca. O Clube limpo meu
+            nome muito rápido mesmo, em menos de 2 meses ja tava tudo certo!</div>
+          <div class="dm-author">
+            <div class="dm-av" style="background: #fbbf24;">M</div>
+            <div>
+              <div class="dm-name">Mariana S. ✅</div>
+              <div class="dm-stars">⭐⭐⭐⭐⭐</div>
+              <div class="dm-badge">✅ Limpa Nome</div>
+            </div>
+          </div>
+        </div>
         <div class="stats-g">
           <div class="stat-c">
             <div class="stat-n"><span class="count" data-target="2000">0</span>+</div>
@@ -2892,6 +3134,19 @@
   </div>
 
   <div class="cta-sec">
+
+    <svg class="waves" xmlns="http://www.w3.org/2000/svg" viewBox="0 24 150 28" preserveAspectRatio="none"
+      shape-rendering="auto">
+      <defs>
+        <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+      </defs>
+      <g class="parallax">
+        <use href="#gentle-wave" x="48" y="0" class="wave wave1" />
+        <use href="#gentle-wave" x="48" y="3" class="wave wave2" />
+        <use href="#gentle-wave" x="48" y="5" class="wave wave3" />
+        <use href="#gentle-wave" x="48" y="7" class="wave" />
+      </g>
+    </svg>
     <div class="cta-in">
       <div class="cta-tag">🎯 PRONTO PARA RECOMEÇAR?</div>
       <h2 class="cta-h">Dívidas não definem quem você&nbsp;é.</h2>
@@ -3336,16 +3591,16 @@
   </div>
 
 <footer class="f-main">
-    <div style="max-width:1140px; margin:0 auto; display:flex; flex-direction:column; align-items:center; text-align:center; gap:16px;">
-      <img src="logo.png" alt="Clube Zero Dívidas" style="height:60px; width:auto; filter:brightness(0) invert(1); opacity:0.9;">
-      <p style="color:rgba(255,255,255,0.6); font-size:14px; max-width:380px; line-height:1.65;">Especialistas em recuperação de crédito. Ajudamos você a recuperar seu nome e sua liberdade financeira.</p>
-      <div style="display:flex; gap:18px; flex-wrap:wrap; justify-content:center;">
-        <a href="https://wa.me/558391080635" target="_blank" style="color:#22c55e; font-size:14px; font-weight:700; text-decoration:none;">📲 (83) 9108-0635</a>
-        <a href="https://www.instagram.com/clube_zero_dividas/" target="_blank" style="color:#22c55e; font-size:14px; font-weight:700; text-decoration:none;"><img src="instagram.png" style="height:16px; vertical-align:middle; margin-right:4px;"> Instagram</a>
-        <a href="https://www.youtube.com/@Clubezerodividas" target="_blank" style="color:#22c55e; font-size:14px; font-weight:700; text-decoration:none;"><img src="youtube.png" style="height:12px; vertical-align:middle; margin-right:4px;"> YouTube</a>
+    <div style="max-width:1140px; margin:0 auto; display:flex; flex-direction:column; align-items:center; text-align:center; gap:20px;">
+      <img src="logo.png" alt="Clube Zero Dívidas" style="height:160px; filter:brightness(0) invert(1); opacity:0.9;">
+      <p style="color:rgba(255,255,255,0.6); font-size:15px; max-width:420px; line-height:1.7;">Especialistas em recuperação de crédito. Ajudamos você a recuperar seu nome e sua liberdade financeira.</p>
+      <div style="display:flex; gap:20px; flex-wrap:wrap; justify-content:center; margin-top:4px;">
+        <a href="https://wa.me/558391080635" target="_blank" style="color:#22c55e; font-size:15px; font-weight:700; text-decoration:none;">📲 (83) 9108-0635</a>
+        <a href="https://www.instagram.com/clube_zero_dividas/" target="_blank" style="color:#22c55e; font-size:15px; font-weight:700; text-decoration:none;"><img src="instagram.png" style="height:18px; vertical-align:middle; margin-right:4px;"> Instagram</a>
+        <a href="https://www.youtube.com/@Clubezerodividas" target="_blank" style="color:#22c55e; font-size:15px; font-weight:700; text-decoration:none;"><img src="youtube.png" style="height:14px; vertical-align:middle; margin-right:4px;"> YouTube</a>
       </div>
-      <div style="border-top:1px solid rgba(255,255,255,0.1); padding-top:16px; width:100%; color:rgba(255,255,255,0.4); font-size:12px;">
-        © 2026 <strong style="color:rgba(255,255,255,0.6);">Clube Zero Dívidas</strong> · <em>Recupere seu crédito. Recupere sua liberdade.</em>
+      <div style="border-top:1px solid rgba(255,255,255,0.1); padding-top:20px; width:100%; color:rgba(255,255,255,0.4); font-size:13px;">
+        © 2026 <strong style="color:rgba(255,255,255,0.7);">Clube Zero Dívidas</strong> · <em>Recupere seu crédito. Recupere sua liberdade.</em>
       </div>
     </div>
   </footer>
@@ -3386,73 +3641,32 @@
 </div>
 
 <script>
-  // Page Transition Logic
-  function go(id) {
-    const curr = document.querySelector('.pg.on');
-    const next = document.getElementById('pg-' + id);
-    if (curr === next) return;
-
-    if (curr) {
-      curr.classList.add('page-anim-out');
-      setTimeout(() => {
-        curr.classList.remove('on', 'page-anim-out');
-        document.querySelectorAll('.nl[id^="n-"]').forEach(b => b.classList.remove('on'));
-        document.querySelectorAll('.mn-item').forEach(m => m.classList.remove('on'));
-
-        next.classList.add('on', 'page-anim-in');
-        
-        const nb = document.getElementById('n-' + id);
-        if (nb) nb.classList.add('on');
-        
-        const mi = Array.from(document.querySelectorAll('.mn-item')).find(m => m.onclick && m.onclick.toString().includes(`'${id}'`));
-        if (mi) mi.classList.add('on');
-
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+  window.addEventListener('load', () => {
+    let bar = document.getElementById('loader-bar');
+    let pct = 0;
+    let iv = setInterval(() => {
+      pct += 1;
+      if (bar) bar.style.width = pct + '%';
+      if (pct >= 100) {
+        clearInterval(iv);
         setTimeout(() => {
-          next.classList.remove('page-anim-in');
-          initReveal();
-        }, 500);
-      }, 300);
-    } else {
-      next.classList.add('on');
-      initReveal();
-    }
-
-    document.getElementById('mob').classList.remove('on');
-    document.getElementById('burger').classList.remove('on');
-  }
-
-  function toggleMob() {
-    document.getElementById('mob').classList.toggle('on');
-    document.getElementById('burger').classList.toggle('on');
-  }
-
-  // Scroll Reveal Logic
-  function initReveal() {
-    const obsOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry, i) => {
-        if (entry.isIntersecting) {
+          document.getElementById('loader').style.opacity = '0';
           setTimeout(() => {
-            entry.target.classList.add('vis');
-          }, i * 50);
-          observer.unobserve(entry.target);
-        }
-      });
-    }, obsOptions);
-    document.querySelectorAll('.fu, .fl, .fr, .fz').forEach(el => observer.observe(el));
-  }
+            document.getElementById('loader').style.visibility = 'hidden';
+          }, 500);
+        }, 500);
+      }
+    }, 10);
+  });
 
-  // Global Scroll Events
   window.addEventListener('scroll', () => {
-    const winScroll = window.scrollY;
-    const height = document.documentElement.scrollHeight - window.innerHeight;
+    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
     const scrolled = (winScroll / height) * 100;
-    
     document.getElementById('scroll-bar').style.width = scrolled + '%';
-    
+
     const nav = document.getElementById('navbar');
-    if (winScroll > 40) nav.classList.add('scrolled');
+    if (winScroll > 50) nav.classList.add('scrolled');
     else nav.classList.remove('scrolled');
 
     document.querySelectorAll('.count:not(.counted)').forEach(el => {
@@ -3465,7 +3679,7 @@
 
   function animateCount(el) {
     const target = +el.dataset.target;
-    const speed = 1500;
+    const speed = 2000;
     const step = target / (speed / 16);
     let curr = 0;
     const timer = setInterval(() => {
@@ -3479,42 +3693,195 @@
     }, 16);
   }
 
-  // Initialization
-  window.addEventListener('load', () => {
-    const loader = document.getElementById('loader');
-    const bar = document.getElementById('loader-bar');
-    let pct = 0;
-    const iv = setInterval(() => {
-      pct += 2;
-      if (bar) bar.style.width = pct + '%';
-      if (pct >= 100) {
-        clearInterval(iv);
-        setTimeout(() => {
-          loader.style.opacity = '0';
-          setTimeout(() => loader.style.display = 'none', 500);
-        }, 300);
-      }
-    }, 15);
-    initReveal();
-    initCarousel();
-  });
+  setTimeout(() => {
+    document.getElementById('waf-tooltip').classList.add('show');
+    setTimeout(() => {
+      document.getElementById('waf-tooltip').classList.remove('show');
+    }, 6000);
+  }, 5000);
 
-  function initCarousel() {
-    const track = document.getElementById('carousel-track');
-    if (track) {
-      track.innerHTML += track.innerHTML; // Duplicate for infinite
-      let scrollAmount = 0;
-      function step() {
-        scrollAmount += 0.8;
-        if (scrollAmount >= track.scrollWidth / 2) scrollAmount = 0;
-        track.style.transform = `translateX(-${scrollAmount}px)`;
-        requestAnimationFrame(step);
-      }
-      requestAnimationFrame(step);
-    }
+  let track = document.getElementById('carousel-track');
+  if (track) {
+    let scrollAmount = 0;
+    setInterval(() => {
+      scrollAmount += 1;
+      if (scrollAmount >= track.scrollWidth / 2) scrollAmount = 0;
+      track.style.transform = `translateX(-${scrollAmount}px)`;
+    }, 30);
+
+    track.innerHTML += track.innerHTML;
   }
 
-  // FAQ Toggle
+  function go(id) {
+    var curr = document.querySelector('.pg.on');
+    var next = document.getElementById('pg-' + id);
+    if (curr === next) return;
+
+    if (curr) {
+      curr.classList.add('page-anim-out');
+      setTimeout(() => {
+        curr.classList.remove('on', 'page-anim-out');
+        document.querySelectorAll('.nl[id^="n-"]').forEach(b => b.classList.remove('on'));
+
+        next.classList.add('on', 'page-anim-in');
+        var nb = document.getElementById('n-' + id);
+        if (nb) nb.classList.add('on');
+
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        setTimeout(() => {
+          next.classList.remove('page-anim-in');
+          fade();
+        }, 500);
+      }, 300);
+    } else {
+      next.classList.add('on');
+      fade();
+    }
+
+    document.getElementById('mob').classList.remove('on');
+    document.getElementById('burger').classList.remove('on');
+
+    document.querySelectorAll('.mn-item').forEach(m => m.classList.remove('on'));
+    const activeMob = Array.from(document.querySelectorAll('.mn-item')).find(m => m.onclick && m.onclick.toString().includes(id));
+    if (activeMob) activeMob.classList.add('on');
+  }
+  function toggleMob() {
+    document.getElementById('mob').classList.toggle('on');
+    document.getElementById('burger').classList.toggle('on');
+  }
+  function fade() {
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e, i) {
+        if (e.isIntersecting) {
+          setTimeout(function () { e.target.classList.add('vis'); }, i * 60);
+          obs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    document.querySelectorAll('.fu:not(.vis), .fl:not(.vis), .fr:not(.vis), .fz:not(.vis)').forEach(function (el) { obs.observe(el); });
+  }
+  fade();
+
+  function calcSim() {
+    if (!document.getElementById('sv')) return;
+  }
+
+  var avData = [
+    { nome: 'Roberto Alves', cidade: 'São Paulo, SP', servico: 'Limpa Nome', nota: 5, texto: 'Cara, incrível! tava com o nome sujo a quase 5 anos e ja tinha perdido a esperanca. O Clube limpo meu nome muito rápido mesmo, em menos de 2 meses ja tava tudo certo. hj ja tenho cartao e ate financiamento de moto liberado!!', resultado: 'Nome limpo em 45 dias', data: 'Fevereiro 2025' },
+    { nome: 'Ana Paula Marcondes', cidade: 'Rio de Janeiro, RJ', servico: 'Score', nota: 5, texto: 'meu score nao passava de 280 por nada, tentei de tudo. o pessoal do clube foi nota 10, me explicaram tudo e o resultado veio. agora to com 720 e consegui o financiamento da minha casa tao sonhado', resultado: 'Score 280 → 720', data: 'Janeiro 2025' },
+    { nome: 'Carlos Ed.', cidade: 'Belo Horizonte, MG', servico: 'Bacen', nota: 4, texto: 'Tinha umas restrição la no banco central q travava tudo minha vida nos bancos. demorou um pouquinho mais q o esperado mas resolveu tudo. Equipe muito profisional, valeu a pena', resultado: 'Restrição Bacen removida', data: 'Março 2025' },
+    { nome: 'Fernanda Gomes', cidade: 'Recife, PE', servico: 'Limpa Nome', nota: 5, texto: 'Atendimento muito bom, eles tiram todas as duvidas da gente. me ajudaram demais a limpa meu nome que tava uma bagunça faz tempo. nota mil pra vcs!!', resultado: 'Nome limpo em 3 meses', data: 'Fevereiro 2025' },
+    { nome: 'Marcos Vinicios', cidade: 'Fortaleza, CE', servico: 'Diagnóstico', nota: 5, texto: 'eu achava q sabia oq precisava mas o diagnostico mostrou q era otra coisa. equipe bem honesta nao tentam veder oq vc nao precisa. recomendo dmais', resultado: 'Diagnóstico Completo', data: 'Janeiro 2025' },
+    { nome: 'Juliana R.', cidade: 'Salvador, BA', servico: 'Rating', nota: 4, texto: 'Muito bom os serviço deles. Consegui melhora meu rating no banco e finalmente o limite do meu cartao subiu. so nao dou 5 estrelas pq o zap as vezes demora pra respoder mas o servico e garantido', resultado: 'Melhora no Rating Bancário', data: 'Março 2025' },
+    { nome: 'Andre Santos', cidade: 'Curitiba, PR', servico: 'Limpa Nome', nota: 5, texto: 'sensacional! resolvido meu problema de anos. confie q o trabalho e serio', resultado: 'Regularização Total', data: 'Fevereiro 2025' },
+    { nome: 'Luciano P.', cidade: 'Campina Grande, PB', servico: 'Bacen', nota: 3, texto: 'o servico e bom resolveu meu problema com o banco central. so q o atendimento pelo zap e muito demorado as vezes vc manda msg de manha e so respondem a tarde. mas pelo menos o nome limpo deu certo no final', resultado: 'Bacen resolvido', data: 'Março 2025' },
+    { nome: 'Sandra Menezes', cidade: 'Manaus, AM', servico: 'Score', nota: 5, texto: 'Gente pode confiar!!!! meu score era 350 e agora ja ta em 690 em menos de 30 dias. ate aprovaram cartao no bradesco pra mim hoje to muito feliz obg clube zero dividas vcs sao os melhores', resultado: 'Score 350 -> 690', data: 'Março 2025' },
+    { nome: 'Paulo Sergio', cidade: 'Brasília, DF', servico: 'Limpa Nome', nota: 5, texto: 'muito bom o trabalho. resolveram uma divida q eu nem sabia q tinha q tava negativando tudo. preco justo e entregam oq prometem', resultado: 'Nome Limpo', data: 'Janeiro 2025' },
+    { nome: 'Vitoria oliveira', cidade: 'Goiania, GO', servico: 'Rating', nota: 4, texto: 'servico muito profissional. ajudaram a organizar meu rating e as taxas do meu emprestimo baixaram basante. recomendo!', resultado: 'Melhora de Taxas', data: 'Março 2025' },
+  ];
+  var filtroAtivo = 'todos';
+
+  function renderAv() {
+    var grid = document.getElementById('av-grid');
+    if (!grid) return;
+    var lista = filtroAtivo === 'todos' ? avData : avData.filter(function (a) { return a.servico === filtroAtivo || (filtroAtivo === 'Score' && a.servico === 'Score'); });
+    var totalEl = document.getElementById('total-avs');
+    if (totalEl) totalEl.textContent = avData.length;
+    var badges = { 'Limpa Nome': '✅ Limpa Nome', 'Score': '📈 Aumento de Score', 'Bacen': '🏦 Limpa Bacen', 'Rating': '⭐ Rating', 'Diagnóstico': '🔍 Diagnóstico' };
+    grid.innerHTML = lista.map(function (a) {
+      var stars = '⭐'.repeat(a.nota);
+      var av = a.nome.charAt(0).toUpperCase();
+      var res = a.resultado ? '<div style="margin-top:8px;font-size:12px;font-weight:700;color:var(--az);background:var(--azs);display:inline-block;padding:2px 10px;border-radius:20px;">✔ ' + a.resultado + '</div>' : '';
+      var color = ['#3b82f6', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6'][a.nome.length % 5];
+      return '<div class="av-card fz">'
+        + '<div class="av-card-stars">' + stars + '</div>'
+        + '<div class="av-card-txt">' + a.texto + '</div>'
+        + '<div class="av-card-row">'
+        + '<div class="av-card-av" style="background:' + color + '">' + av + '</div>'
+        + '<div><div class="av-card-name">' + a.nome + ' ✅</div>'
+        + '<div class="av-card-loc">' + a.cidade + '</div>'
+        + '<div class="av-card-badge">' + (badges[a.servico] || a.servico) + '</div>'
+        + '</div></div>'
+        + res
+        + '<div class="av-card-data">📅 ' + a.data + '</div>'
+        + '</div>';
+    }).join('');
+    setTimeout(fade, 80);
+  }
+
+  function filtrar(cat, el) {
+    filtroAtivo = cat;
+    document.querySelectorAll('.av-flt').forEach(function (b) { b.classList.remove('on'); });
+    el.classList.add('on');
+    renderAv();
+  }
+
+  var notaSel = 0;
+  var labels = ['', '😕 Ruim', '😐 Regular', '🙂 Bom', '😊 Muito bom', '🤩 Excelente!'];
+  var starPick = document.getElementById('star-pick');
+  if (starPick) {
+    starPick.addEventListener('mouseover', function (e) {
+      var t = e.target.closest('.sp'); if (!t) return;
+      var v = +t.dataset.v;
+      document.querySelectorAll('.sp').forEach(function (s) { s.classList.toggle('hover', +s.dataset.v <= v); });
+    });
+    starPick.addEventListener('mouseout', function () {
+      document.querySelectorAll('.sp').forEach(function (s) { s.classList.remove('hover'); s.classList.toggle('on', +s.dataset.v <= notaSel); });
+    });
+    starPick.addEventListener('click', function (e) {
+      var t = e.target.closest('.sp'); if (!t) return;
+      notaSel = +t.dataset.v;
+      document.querySelectorAll('.sp').forEach(function (s) { s.classList.toggle('on', +s.dataset.v <= notaSel); });
+      document.getElementById('star-label').textContent = labels[notaSel];
+    });
+  }
+
+  function enviarAv() {
+    var nome = document.getElementById('av-nome').value.trim();
+    var cidade = document.getElementById('av-cidade').value.trim();
+    var servico = document.getElementById('av-servico').value;
+    var resultado = document.getElementById('av-resultado').value.trim();
+    var texto = document.getElementById('av-texto').value.trim();
+    if (!nome) { alert('Por favor, informe seu nome.'); return; }
+    if (!notaSel) { alert('Por favor, selecione uma nota.'); return; }
+    if (!servico) { alert('Por favor, selecione o serviço utilizado.'); return; }
+    if (!texto || texto.length < 20) { alert('Por favor, escreva um depoimento com pelo menos 20 caracteres.'); return; }
+
+    var meses = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
+    var d = new Date();
+    var data = meses[d.getMonth()] + ' ' + d.getFullYear();
+
+    avData.unshift({
+      nome: nome,
+      cidade: cidade || 'Brasil',
+      servico: servico,
+      nota: notaSel,
+      texto: texto,
+      resultado: resultado || '',
+      data: data
+    });
+
+    document.getElementById('av-nome').value = '';
+    document.getElementById('av-cidade').value = '';
+    document.getElementById('av-servico').value = '';
+    document.getElementById('av-resultado').value = '';
+    document.getElementById('av-texto').value = '';
+    notaSel = 0;
+    document.querySelectorAll('.sp').forEach(function (s) { s.classList.remove('on', 'hover'); });
+    document.getElementById('star-label').textContent = 'Clique para avaliar';
+
+    var suc = document.getElementById('av-success');
+    suc.style.display = 'block';
+    setTimeout(function () { suc.style.display = 'none'; }, 5000);
+
+    filtroAtivo = 'todos';
+    document.querySelectorAll('.av-flt').forEach(function (b, i) { b.classList.toggle('on', i === 0); });
+    renderAv();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  renderAv();
+
   function toggleFaq(btn) {
     const ans = btn.nextElementSibling;
     const ic = btn.querySelector('.faq-ic');
@@ -3526,64 +3893,66 @@
     if (!isOpen) {
       ans.style.maxHeight = ans.scrollHeight + 'px';
       ic.style.transform = 'rotate(45deg)';
+    } else {
+      ans.style.maxHeight = '0px';
+      ic.style.transform = 'rotate(0deg)';
     }
   }
 
-  // Reviews Data & Logic
-  const avData = [
-    { nome: 'Roberto Alves', cidade: 'São Paulo, SP', servico: 'Limpa Nome', nota: 5, texto: 'Cara, incrível! tava com o nome sujo a quase 5 anos e ja tinha perdido a esperanca. O Clube limpo meu nome muito rápido mesmo.', resultado: 'Nome limpo em 45 dias', data: 'Fevereiro 2025' },
-    { nome: 'Ana Paula Marcondes', cidade: 'Rio de Janeiro, RJ', servico: 'Score', nota: 5, texto: 'meu score nao passava de 280 por nada, tentei de tudo. o pessoal do clube foi nota 10, me explicaram tudo e o resultado veio.', resultado: 'Score 280 → 720', data: 'Janeiro 2025' },
-    { nome: 'Carlos Ed.', cidade: 'Belo Horizonte, MG', servico: 'Bacen', nota: 4, texto: 'Tinha umas restrição la no banco central q travava tudo minha vida nos bancos. demorou um pouquinho mas resolveu tudo.', resultado: 'Restrição Bacen removida', data: 'Março 2025' },
-    { nome: 'Sandra Menezes', cidade: 'Manaus, AM', servico: 'Score', nota: 5, texto: 'Gente pode confiar!!!! meu score era 350 e agora ja ta em 690 em menos de 30 dias. ate aprovaram cartao pra mim hj.', resultado: 'Score 350 -> 690', data: 'Março 2025' }
-  ];
+  function updateProfitSim() {
+    const custo = parseFloat(document.getElementById('sim-custo').value) || 0;
+    const venda = parseFloat(document.getElementById('sim-venda').value) || 0;
+    const clientes = parseFloat(document.getElementById('sim-clientes').value) || 0;
 
-  function renderAv() {
-    const grid = document.getElementById('av-grid');
-    if (!grid) return;
-    const badges = { 'Limpa Nome': '✅ Limpa Nome', 'Score': '📈 Score', 'Bacen': '🏦 Bacen', 'Rating': '⭐ Rating', 'Diagnóstico': '🔍 Diagnóstico' };
-    grid.innerHTML = avData.map(a => `
-      <div class="av-card fz">
-        <div class="av-card-stars">${'⭐'.repeat(a.nota)}</div>
-        <div class="av-card-txt">${a.texto}</div>
-        <div class="av-card-row">
-          <div class="av-card-av" style="background:${['#3b82f6', '#10b981', '#f59e0b', '#8b5cf6'][a.nome.length % 4]}">${a.nome[0].toUpperCase()}</div>
-          <div>
-            <div class="av-card-name">${a.nome} ✅</div>
-            <div class="av-card-loc">${a.cidade}</div>
-            <div class="av-card-badge">${badges[a.servico] || a.servico}</div>
-          </div>
-        </div>
-        ${a.resultado ? `<div style="margin-top:8px;font-size:11px;font-weight:700;color:var(--az);background:var(--azs);display:inline-block;padding:2px 10px;border-radius:6px;">✔ ${a.resultado}</div>` : ''}
-        <div class="av-card-data">📅 ${a.data}</div>
-      </div>
-    `).join('');
-    initReveal();
+    const lucroCli = venda - custo;
+    const fatMensal = venda * clientes;
+    const custoTot = custo * clientes;
+    const lucroMensal = fatMensal - custoTot;
+
+    if(document.getElementById('res-lucro-cli')) {
+      document.getElementById('res-lucro-cli').textContent = 'R$ ' + lucroCli.toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+      document.getElementById('res-fat').textContent = 'R$ ' + fatMensal.toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+      document.getElementById('res-custo-tot').textContent = 'R$ ' + custoTot.toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+      document.getElementById('res-lucro-tot').textContent = 'R$ ' + lucroMensal.toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+    }
   }
-  renderAv();
+  if (document.getElementById('sim-custo')) updateProfitSim();
 
-  // Star Rating Picker
-  let notaSel = 0;
-  const starPick = document.getElementById('star-pick');
-  if (starPick) {
-    starPick.addEventListener('click', e => {
-      const t = e.target.closest('.sp');
-      if (!t) return;
-      notaSel = +t.dataset.v;
-      document.querySelectorAll('.sp').forEach(s => s.classList.toggle('on', +s.dataset.v <= notaSel));
-      document.getElementById('star-label').textContent = ['', '😕 Ruim', '😐 Regular', '🙂 Bom', '😊 Muito bom', '🤩 Excelente!'][notaSel];
+  // Super Pack Scroll Reveal
+  const obsOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('vis');
+        observer.unobserve(entry.target);
+      }
     });
-  }
+  }, obsOptions);
 
-  function enviarAv() {
-    // Basic validation logic simplified
-    const nome = document.getElementById('av-nome').value;
-    if (!nome || !notaSel) { alert('Preencha os campos obrigatórios.'); return; }
-    document.getElementById('av-success').style.display = 'block';
-    setTimeout(() => document.getElementById('av-success').style.display = 'none', 4000);
-  }
+  document.querySelectorAll('.fu, .fl, .fr, .fz').forEach(el => observer.observe(el));
+
+  window.addEventListener('scroll', () => {
+    const nav = document.querySelector('nav');
+    const scrollBar = document.getElementById('scroll-bar');
+    const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+    
+    if (scrollBar) scrollBar.style.width = scrolled + '%';
+    
+    if (window.scrollY > 40) {
+      nav.classList.add('scrolled');
+    } else {
+      nav.classList.remove('scrolled');
+    }
+  });
+
+  window.addEventListener('load', () => {
+    const loader = document.getElementById('loader');
+    setTimeout(() => {
+      loader.style.opacity = '0';
+      setTimeout(() => loader.style.display = 'none', 600);
+    }, 1000);
+  });
 </script>
-</body>
-</html>
 </body>
 
 </html>
