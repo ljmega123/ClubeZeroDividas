@@ -4,6 +4,7 @@ import { useRef } from "react"
 import Image from "next/image"
 import { motion, useScroll, useTransform } from "framer-motion"
 import { TrendingUp, Globe, HeadphonesIcon, DollarSign } from "lucide-react"
+import { BASE_PATH } from "@/lib/constants"
 
 const beneficios = [
   { icon: DollarSign, text: "Ganhos acima de R$ 5.000,00 por mês" },
@@ -27,7 +28,7 @@ export function AfiliadosHero() {
       {/* Background */}
       <motion.div style={{ scale: bgScale }} className="absolute inset-0">
         <Image
-          src="/images/imagem-hero.jpg"
+          src={`${BASE_PATH}/images/imagem-hero.jpg`}
           alt=""
           fill
           className="object-cover"

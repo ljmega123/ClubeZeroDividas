@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { Menu, X } from "lucide-react"
-import { NAV_LINKS } from "@/lib/constants"
+import { NAV_LINKS, BASE_PATH } from "@/lib/constants"
 import { cn } from "@/lib/utils"
 
 export function Navbar() {
@@ -41,7 +41,7 @@ export function Navbar() {
           aria-label="Clube Zero Dívidas"
         >
           <Image
-            src="/images/Logo.png"
+            src={`${BASE_PATH}/images/Logo.png`}
             alt="Clube Zero Dívidas"
             width={180}
             height={54}

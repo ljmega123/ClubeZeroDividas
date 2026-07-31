@@ -10,6 +10,8 @@ export const COMPANY = {
   since: 2026,
 }
 
+export const BASE_PATH = "/ClubeZeroDividas"
+
 export const NAV_LINKS = [
   { label: "Quem Somos", href: "/sobre" },
   { label: "O que Oferecemos", href: "/#servicos" },

@@ -5,6 +5,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { motion, useScroll, useTransform } from "framer-motion"
 import { Home, Car, CreditCard, TrendingUp, ShieldCheck, PiggyBank, ArrowRight } from "lucide-react"
+import { BASE_PATH } from "@/lib/constants"
 
 const services = [
   { icon: Home, label: "Consórcios" },
@@ -34,7 +35,7 @@ export function HeroSection() {
       {/* Background image with parallax */}
       <motion.div style={{ scale: bgScale }} className="absolute inset-0">
         <Image
-          src="/images/imagem-hero.jpg"
+          src={`${BASE_PATH}/images/imagem-hero.jpg`}
           alt=""
           fill
           sizes="100vw"
